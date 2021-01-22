@@ -1,6 +1,8 @@
 class ArticlesController < ApplicationController
 
-  # http_basic_authenticate_with name: "sebas", password: "secret", except: [:index, :show]
+  include PrivateGuard
+
+  before_action :require_user
 
   def index
     @articles = Article.all

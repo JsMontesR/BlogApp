@@ -1,6 +1,9 @@
 class UsersController < ApplicationController
 
   include Login
+  include PrivateGuard
+
+  before_action :require_user
 
   def new
     @user = User.new
@@ -9,7 +12,7 @@ class UsersController < ApplicationController
   def create
     @user = User.new(user_params)
     if @user.save
-      login # Concern calling for get logged in on signup
+      login # Concern calling for getting logged in on signed-up
     else
       render :new
     end

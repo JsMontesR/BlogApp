@@ -1,2 +1,6 @@
-<p>This is the homepage!, go ahead login/signup and navigate the blog!</p>
-<%= link_to "Articles", articles_path %>
+<% if current_user %>
+  <p>This is the homepage, click down below for options!</p>
+  <%= link_to "Articles", articles_path %>
+<% else %>
+  <p>This is the homepage!, please login/signup for navigating the blog</p>
+<% end %>
