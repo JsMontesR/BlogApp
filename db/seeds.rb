@@ -7,7 +7,7 @@
 #   Character.create(name: 'Luke', movie: movies.first)
 
 5.times do |i|
-  User.create(username: "user#{i}", password: "1234")
+  User.create(username: "user#{i + 1}", password: "1234")
 end
 
 puts 'Database Seeded'

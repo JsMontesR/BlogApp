@@ -2,8 +2,8 @@
 
 <h2>Our blog has <%= Article.count_without_status('archived') %> articles and counting!</h2>
 <%= link_to "Create a new article!", new_article_path %>
-<h3>Blog current articles:</h3>
-<%= render 'articles/articles_list', articles: @articles, filter: :not_archived %>
+<h3>Blog current public articles:</h3>
+<%= render 'articles/articles_list', articles: @articles, filter: :public %>
 
 <h3>Blog archived articles:</h3>
 <%= render 'articles/articles_list', articles: @articles, filter: :archived %>

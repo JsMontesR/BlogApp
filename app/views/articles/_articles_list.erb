@@ -1,9 +1,9 @@
 <!--Articles main list with filters-->
 <ul>
   <% case filter %>
-  <% when :not_archived %>
+  <% when :public %>
     <% articles.each do |article| %>
-      <% unless article.archived? %>
+      <% if article.public? %>
         <li>
           <%= link_to article.title, article %>
         </li>
@@ -12,6 +12,14 @@
   <% when :archived %>
     <% articles.each do |article| %>
       <% if article.archived? %>
+        <li>
+          <%= link_to article.title, article %>
+        </li>
+      <% end %>
+    <% end %>
+  <% when :personal %>
+    <% articles.each do |article| %>
+      <% if article.personal? %>
         <li>
           <%= link_to article.title, article %>
         </li>

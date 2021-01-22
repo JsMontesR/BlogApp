@@ -15,7 +15,11 @@
 </ul>
 
 <h2>Comments</h2>
-<%= render @article.comments %>
+<%= render 'comments/comments_list', comments: @article.comments, filter: :public %>
+<h2>Personal comments</h2>
+<%= render 'comments/comments_list', comments: @article.comments, filter: :personal %>
+<h2>Archived comments</h2>
+<%= render 'comments/comments_list', comments: @article.comments, filter: :archived %>
 
 <h2>Add a comment:</h2>
 <%= render 'comments/form' %>

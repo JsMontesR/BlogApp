@@ -1,0 +1,27 @@
+<!--Comments main list with filters-->
+<ul>
+  <% case filter %>
+  <% when :public %>
+    <% comments.each do |comment| %>
+      <% if comment.public? %>
+        <%= render comment %>
+      <% end %>
+    <% end %>
+  <% when :archived %>
+    <% comments.each do |comment| %>
+      <% if comment.archived? %>
+        <%= render comment %>
+      <% end %>
+    <% end %>
+  <% when :personal %>
+    <% comments.each do |comment| %>
+      <% if comment.personal? %>
+        <%= render comment %>
+      <% end %>
+    <% end %>
+  <% else %>
+    <% articles.each do |article| %>
+      <%= render comment %>
+    <% end %>
+  <% end %>
+</ul>

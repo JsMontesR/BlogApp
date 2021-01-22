@@ -4,13 +4,19 @@
   <% unless current_user.follower?(@user) %>
     <%= link_to "Follow #{@user.username}", user_follow_path(@user) %>
   <% else %>
-     Click <%= link_to "unfollow", user_unfollow_path(@user) %> for stop following <strong><%= @user.username %></strong>
+    Click <%= link_to "unfollow", user_unfollow_path(@user) %> for stop following <strong><%= @user.username %></strong>
   <% end %>
 <% end %>
 
 
 <h3><%= @user.username %> current articles:</h3>
-<%= render 'articles/articles_list', articles: @user.articles, filter: :not_archived %>
+<%= render 'articles/articles_list', articles: @user.articles, filter: :public %>
+
+<% if current_user.follower?(@user) || @user == current_user  %>
+  <h3><%= @user.username %> personal articles:</h3>
+  <%= render 'articles/articles_list', articles: @user.articles, filter: :personal %>
+<% end %>
+
 
 <h3><%= @user.username %> archived articles:</h3>
 <%= render 'articles/articles_list', articles: @user.articles, filter: :archived %>

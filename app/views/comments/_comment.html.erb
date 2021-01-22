@@ -1,4 +1,4 @@
-<% unless comment.archived? %>
+<li>
   <p>
     <strong>Commenter:</strong>
     <%= comment.commenter %>
@@ -8,15 +8,14 @@
     <strong>Comment:</strong>
     <%= comment.body %>
   </p>
-
-  <p>
-    <%= link_to 'Undo comment', [comment.article, comment],
-                method: :delete,
-                data: { confirm: "Are you sure?" } %>
-  </p>
-  <p>
-    <%= link_to 'Archive comment', [comment.article, comment],
-                method: :patch,
-                data: { confirm: "Are you sure?" } %>
-  </p>
-<% end %>
+</li>
+<p>
+  <%= link_to 'Undo comment', [comment.article, comment],
+              method: :delete,
+              data: { confirm: "Are you sure?" } %>
+</p>
+<p>
+  <%= link_to 'Archive comment', [comment.article, comment],
+              method: :patch,
+              data: { confirm: "Are you sure?" } %>
+</p>

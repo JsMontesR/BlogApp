@@ -43,7 +43,7 @@ class UsersController < ApplicationController
   def add_follower
     @user = User.find(params[:user_id])
     current_user.follow(@user)
-    redirect_to @user, notice: "Now you are following #{@user.username}!, and you can read his personal articles!"
+    redirect_to @user, notice: "Now you are following #{@user.username}!, and you can read his personal articles and comments!"
   end
 
   # Makes the logged user to unfollow the param user
