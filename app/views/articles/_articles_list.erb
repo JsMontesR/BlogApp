@@ -1,0 +1,35 @@
+<!--Articles main list with filters-->
+<ul>
+  <% case filter %>
+  <% when VisibleFeature::PUBLIC %>
+    <% articles.each do |article| %>
+      <% if article.public? %>
+        <li>
+          <%= link_to article.title, article %>
+        </li>
+      <% end %>
+    <% end %>
+  <% when VisibleFeature::ARCHIVED %>
+    <% articles.each do |article| %>
+      <% if article.archived? %>
+        <li>
+          <%= link_to article.title, article %>
+        </li>
+      <% end %>
+    <% end %>
+  <% when VisibleFeature::PERSONAL %>
+    <% articles.each do |article| %>
+      <% if article.personal? %>
+        <li>
+          <%= link_to article.title, article %>
+        </li>
+      <% end %>
+    <% end %>
+  <% else %>
+    <% articles.each do |article| %>
+      <li>
+        <%= link_to article.title, article %>
+      </li>
+    <% end %>
+  <% end %>
+</ul>

@@ -3,7 +3,10 @@ Rails.application.routes.draw do
   resources :articles do
     resources :comments
   end
-  resources :users, only: %i[new create edit update]
+  resources :users, except: %i[destroy] do
+    get 'follow', to: 'users#add_follower', as: 'follow'
+    get 'unfollow', to: 'users#delete_follower', as: 'unfollow'
+  end
   get 'signup', to: 'users#new', as: 'signup'
 
   resources :sessions, only: %i[new create destroy]

@@ -1,0 +1,27 @@
+<!--Comments main list with filters-->
+<ul>
+  <% case filter %>
+  <% when VisibleFeature::PUBLIC %>
+    <% comments.each do |comment| %>
+      <% if comment.public? %>
+        <%= render comment %>
+      <% end %>
+    <% end %>
+  <% when VisibleFeature::ARCHIVED %>
+    <% comments.each do |comment| %>
+      <% if comment.archived? %>
+        <%= render comment %>
+      <% end %>
+    <% end %>
+  <% when VisibleFeature::PERSONAL %>
+    <% comments.each do |comment| %>
+      <% if comment.personal? && (comment.user == current_user || current_user.follows?(comment.user)) %>
+        <%= render comment %>
+      <% end %>
+    <% end %>
+  <% else %>
+    <% articles.each do |comment| %>
+      <%= render comment %>
+    <% end %>
+  <% end %>
+</ul>
