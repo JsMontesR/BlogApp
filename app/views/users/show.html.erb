@@ -1,0 +1,18 @@
+<h1>Author info:</h1>
+<h2>Username: <%= @user.username %> </h2>
+<% unless @user == current_user %>
+  <% unless current_user.follower?(@user) %>
+    <%= link_to "Follow #{@user.username}", user_follow_path(@user) %>
+  <% else %>
+     Click <%= link_to "unfollow", user_unfollow_path(@user) %> for stop following <strong><%= @user.username %></strong>
+  <% end %>
+<% end %>
+
+
+<h3><%= @user.username %> current articles:</h3>
+<%= render 'articles/articles_list', articles: @user.articles, filter: :not_archived %>
+
+<h3><%= @user.username %> archived articles:</h3>
+<%= render 'articles/articles_list', articles: @user.articles, filter: :archived %>
+
+<h3>Total of articles published: <%= @user.articles.count %> </h3>

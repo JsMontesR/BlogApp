@@ -1,9 +1,9 @@
 <p>
   <%= form.label "visibility:" %><br>
   <%= form.select :status,
-                  [["Public", "public"], ["Private", "private"], ["Archived", "archived"]],
+                  [["Public", "public"], ["Personal", "personal"], ["Archived", "archived"]],
                   selected: "public" %>
-  <%= element.errors.full_messages_for(:status).each do |message| %>
+  <% element.errors.full_messages_for(:status).each do |message| %>
   <div><%= message %></div>
 <% end %>
 </p>

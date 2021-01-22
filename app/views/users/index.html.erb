@@ -1,0 +1,23 @@
+<h1>Authors</h1>
+
+<h2>Our blog has <%= User.count %> authors!</h2>
+
+<table>
+  <tr>
+    <th>Username</th>
+    <th># Articles</th>
+  </tr>
+    <% @users.each do |user| %>
+    <tr>
+      <td>
+        <%= link_to user.username, user %>
+      </td>
+      <td>
+        <%= user.articles.count %>
+      </td>
+    </tr>
+    <% end %>
+</table>
+
+
+

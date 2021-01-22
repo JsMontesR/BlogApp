@@ -17,8 +17,8 @@ class ArticlesController < ApplicationController
   end
 
   def create
-    @article = Article.new(article_params)
-    if @article.save
+    @article = current_user.articles.create(article_params)
+    if @article
       redirect_to @article
     else
       render :new
@@ -26,11 +26,11 @@ class ArticlesController < ApplicationController
   end
 
   def edit
-    @article = Article.find(params[:id])
+    @article = current_user.articles.find(params[:id])
   end
 
   def update
-    @article = Article.find(params[:id])
+    @article = current_user.articles.find(params[:id])
 
     if @article.update(article_params)
       redirect_to @article, notice: "Article updated!"

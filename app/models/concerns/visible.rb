@@ -1,7 +1,10 @@
 module Visible
   extend ActiveSupport::Concern
+  PUBLIC = 'public'.freeze
+  PERSONAL = 'personal'.freeze
+  ARCHIVED = 'archived'.freeze
 
-  VALID_STATUSES = ['public', 'private', 'archived']
+  VALID_STATUSES = [PUBLIC, PERSONAL, ARCHIVED].freeze
 
   included do
     validates :status, inclusion: { in: VALID_STATUSES }
@@ -21,14 +24,14 @@ module Visible
   end
 
   def archived?
-    status == 'archived'
+    status == ARCHIVED
   end
 
   def public?
-    status == 'public'
+    status == PUBLIC
   end
 
-  def private?
-    status == 'private'
+  def personal?
+    status == PERSONAL
   end
 end

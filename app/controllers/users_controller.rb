@@ -3,7 +3,15 @@ class UsersController < ApplicationController
   include Login
   include PrivateGuard
 
-  before_action :require_user
+  before_action :require_user, except: %i[new create]
+
+  def index
+    @users = User.all
+  end
+
+  def show
+    @user = User.find(params[:id])
+  end
 
   def new
     @user = User.new
@@ -25,10 +33,24 @@ class UsersController < ApplicationController
   def update
     @user = User.find(params[:id])
     if @user.update(user_params)
-      redirect_to root_path, notice: "Your info have been updated!"
+      redirect_to root_path, notice: 'Your info have been updated!'
     else
       render :edit
     end
+  end
+
+  # Makes the logged user to follow the param user
+  def add_follower
+    @user = User.find(params[:user_id])
+    current_user.follow(@user)
+    redirect_to @user, notice: "Now you are following #{@user.username}!, and you can read his personal articles!"
+  end
+
+  # Makes the logged user to unfollow the param user
+  def delete_follower
+    @user = User.find(params[:user_id])
+    current_user.unfollow(@user)
+    redirect_to @user, notice: "You are not following #{@user.username} anymore!"
   end
 
   private
