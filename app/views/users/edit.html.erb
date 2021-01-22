@@ -1,0 +1,18 @@
+<h1>Edit your data</h1>
+<%= form_with model: @user do |form| %>
+  <%= render 'form', user: @user, form: form %>
+  <hr>
+  <%= form.label 'Enter your current password for submitting changes:' %><br>
+  <%= form.password_field :old_password %>
+  <% @user.errors.full_messages_for(:old_password).each do |message| %>
+    <div style="color: #B00100"><%= message %></div>
+  <% end %>
+  <br>
+  <br>
+  <div>
+    <%= form.submit %>
+    <%= link_to "Go back", root_path %>
+  </div>
+<% end %>
+
+

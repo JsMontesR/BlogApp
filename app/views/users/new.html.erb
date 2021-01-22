@@ -1,0 +1,11 @@
+<h1>Sign up</h1>
+<%= form_with model: @user do |form| %>
+  <%= render "form", user: @user, form: form %>
+  <br>
+  <br>
+  <div>
+    <%= form.submit %>
+    <%= link_to "Go back", root_path %>
+  </div>
+<% end %>
+
