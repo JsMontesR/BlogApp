@@ -1,9 +1,6 @@
 <p>
-  <%= form.label "visibility:" %><br>
+  <%= form.label "Visibility:" %><br>
   <%= form.select :status,
-                  [["Public", "public"], ["Personal", "personal"], ["Archived", "archived"]],
-                  selected: "public" %>
-  <% element.errors.full_messages_for(:status).each do |message| %>
-  <div><%= message %></div>
-<% end %>
+                  [['Public', 'public'], ['Personal', 'personal'], ['Archived', 'archived']],
+                  selected: @comment.nil? ? 'public' : @comment.status %>
 </p>

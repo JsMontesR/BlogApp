@@ -15,12 +15,12 @@
     <% end %>
   <% when :personal %>
     <% comments.each do |comment| %>
-      <% if comment.personal? %>
+      <% if comment.personal? && (comment.user == current_user || current_user.follows?(comment.user)) %>
         <%= render comment %>
       <% end %>
     <% end %>
   <% else %>
-    <% articles.each do |article| %>
+    <% articles.each do |comment| %>
       <%= render comment %>
     <% end %>
   <% end %>

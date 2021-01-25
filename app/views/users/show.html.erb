@@ -1,7 +1,10 @@
 <h1>Author info:</h1>
 <h2>Username: <%= @user.username %> </h2>
+<% if current_user == @user %>
+  <%= link_to "Edit profile", edit_user_path(current_user) %>
+<% end %>
 <% unless @user == current_user %>
-  <% unless current_user.follower?(@user) %>
+  <% unless current_user.follows?(@user) %>
     <%= link_to "Follow #{@user.username}", user_follow_path(@user) %>
   <% else %>
     Click <%= link_to "unfollow", user_unfollow_path(@user) %> for stop following <strong><%= @user.username %></strong>
@@ -9,10 +12,10 @@
 <% end %>
 
 
-<h3><%= @user.username %> current articles:</h3>
+<h3><%= @user.username  %> current articles:</h3>
 <%= render 'articles/articles_list', articles: @user.articles, filter: :public %>
 
-<% if current_user.follower?(@user) || @user == current_user  %>
+<% if current_user.follows?(@user) || @user == current_user %>
   <h3><%= @user.username %> personal articles:</h3>
   <%= render 'articles/articles_list', articles: @user.articles, filter: :personal %>
 <% end %>

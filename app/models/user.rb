@@ -3,6 +3,7 @@ class User < ApplicationRecord
   attr_accessor :old_password
 
   has_many :articles, dependent: :destroy
+  has_many :comments, dependent: :destroy
   has_and_belongs_to_many :followers,
                           class_name: 'User',
                           join_table: 'followers',
@@ -44,12 +45,12 @@ class User < ApplicationRecord
   end
 
   # Know if the user passed as parameter is a follower of self
-  def followed?(user)
+  def followed_by?(user)
     followers.include?(user)
   end
 
   # Know if self is a follower of the param user
-  def follower?(user)
+  def follows?(user)
     user.followers.include?(self)
   end
 

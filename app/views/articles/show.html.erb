@@ -1,6 +1,14 @@
-<h1><%= @article.title %> </h1>
-<p><%= @article.body %> </p>
-
+<div>
+  <h1><%= @article.title %> </h1>
+</div>
+<div>
+  <p><%= @article.body %> </p>
+</div>
+<div>
+  <small>
+    <%= render 'shared/timestamps', element: @article %>
+  </small>
+</div>
 <ul>
   <% if @article.user == current_user %>
     <li><%= link_to "Edit", edit_article_path(@article) %></li>
@@ -10,18 +18,20 @@
     </li>
   <% end %>
   <br>
-  <li><%= link_to "See authors profile", @article.user %></li>
+  <li><%= link_to "See #{@article.user.username} profile (author)", @article.user %></li>
   <li><%= link_to "Back", articles_path %></li>
 </ul>
 
 <h2>Comments</h2>
 <%= render 'comments/comments_list', comments: @article.comments, filter: :public %>
-<h2>Personal comments</h2>
+<h2>Personal comments (only yours and from followed authors)</h2>
 <%= render 'comments/comments_list', comments: @article.comments, filter: :personal %>
 <h2>Archived comments</h2>
 <%= render 'comments/comments_list', comments: @article.comments, filter: :archived %>
 
 <h2>Add a comment:</h2>
-<%= render 'comments/form' %>
+<%= form_with model: [@article, @article.comments.build] do |form| %>
+  <%= render 'comments/form', form: form %>
+<% end %>
 
 

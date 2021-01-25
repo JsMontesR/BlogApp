@@ -1,21 +1,23 @@
-<li>
+<div>
+  <li>
+    <p>
+    <div>
+      <strong><%= link_to comment.user.username, comment.user %> says:</strong>
+    </div>
+    <div>
+      <i><%= comment.body %></i>
+    </div>
+    <%= render 'shared/timestamps', element: comment %>
+    </p>
+  </li>
+</div>
+
+<% if comment.user == current_user %>
   <p>
-    <strong>Commenter:</strong>
-    <%= comment.commenter %>
+    <%= link_to "Edit", edit_article_comment_path(comment.article, comment) %>
+    <%= link_to 'Undo comment', [comment.article, comment],
+                method: :delete,
+                data: { confirm: "Are you sure?" } %>
   </p>
 
-  <p>
-    <strong>Comment:</strong>
-    <%= comment.body %>
-  </p>
-</li>
-<p>
-  <%= link_to 'Undo comment', [comment.article, comment],
-              method: :delete,
-              data: { confirm: "Are you sure?" } %>
-</p>
-<p>
-  <%= link_to 'Archive comment', [comment.article, comment],
-              method: :patch,
-              data: { confirm: "Are you sure?" } %>
-</p>
+<% end %>
