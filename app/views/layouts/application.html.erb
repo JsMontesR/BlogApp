@@ -11,6 +11,20 @@
 </head>
 
 <body>
-  <%= yield %>
+<% if current_user %>
+  <h1>Welcome <%= current_user.username %>!</h1>
+  <%= link_to "Home", root_path %>
+  <%= link_to "Edit profile", edit_user_path(current_user) %>
+  <%= link_to "Log out", logout_path %>
+<% else %>
+  <%= link_to "Sing up", signup_path %>
+  <%= link_to "Log in", login_path %>
+<% end %>
+
+<p id=”notice”><%= notice %></p>
+<hr>
+
+<%= yield %>
+
 </body>
 </html>

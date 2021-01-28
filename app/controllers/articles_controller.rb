@@ -1,6 +1,8 @@
 class ArticlesController < ApplicationController
 
-  http_basic_authenticate_with name: "sebas", password: "secret", except: [:index, :show]
+  include PrivateGuard
+
+  before_action :require_user
 
   def index
     @articles = Article.all
@@ -15,7 +17,6 @@ class ArticlesController < ApplicationController
   end
 
   def create
-    p article_params
     @article = Article.new(article_params)
     if @article.save
       redirect_to @article
@@ -32,7 +33,7 @@ class ArticlesController < ApplicationController
     @article = Article.find(params[:id])
 
     if @article.update(article_params)
-      redirect_to @article
+      redirect_to @article, notice: "Article updated!"
     else
       render :edit
     end
