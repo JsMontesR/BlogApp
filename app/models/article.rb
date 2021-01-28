@@ -1,5 +1,5 @@
 class Article < ApplicationRecord
-  include Visible
+  include VisibleFeature
   include DateAccessor
   has_many :comments, dependent: :destroy
   belongs_to :user

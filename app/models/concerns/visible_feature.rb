@@ -1,4 +1,4 @@
-module Visible
+module VisibleFeature
   extend ActiveSupport::Concern
   PUBLIC = 'public'.freeze
   PERSONAL = 'personal'.freeze
@@ -21,6 +21,7 @@ module Visible
     def count_without_status(status)
       where.not(status: status).count
     end
+
   end
 
   def archived?

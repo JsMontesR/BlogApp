@@ -1,6 +1,7 @@
 class ArticlesController < ApplicationController
 
   include PrivateGuard
+  include SecureTransaction
 
   before_action :require_user
 
@@ -9,7 +10,7 @@ class ArticlesController < ApplicationController
   end
 
   def show
-    @article = Article.find(params[:id])
+    @article = find(Article, params[:id]) # Article.find(params[:id])
   end
 
   def new
@@ -26,25 +27,24 @@ class ArticlesController < ApplicationController
   end
 
   def edit
-    @article = current_user.articles.find(params[:id])
+    @article = find(current_user.articles, params[:id]) # current_user.articles.find(params[:id])
   end
 
   def update
-    @article = current_user.articles.find(params[:id])
-
-    if @article.update(article_params)
-      redirect_to @article, notice: "Article updated!"
-    else
-      render :edit
+    if (@article = find(current_user.articles, params[:id])).is_a?(Article) # current_user.articles.find(params[:id])
+      if @article.update(article_params)
+        redirect_to @article, notice: "Article updated!"
+      else
+        render :edit
+      end
     end
-
   end
 
   def destroy
-    @article = Article.find(params[:id])
-    @article.destroy
-
-    redirect_to (articles_path)
+    if (@article = find(Article, params[:id])).is_a?(Article) # Article.find(params[:id])
+      @article.destroy
+      redirect_to (articles_path)
+    end
   end
 
   private
