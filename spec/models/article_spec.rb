@@ -48,10 +48,4 @@ RSpec.describe Article, type: :model do
 
     end
   end
-
-  # it 'should has an author' do
-  #   expect
-  # end
-
-  # it 'should set timestamps'
 end

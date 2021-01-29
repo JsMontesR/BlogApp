@@ -60,5 +60,6 @@ gem 'bcrypt', '~> 3.1', '>= 3.1.11'
 
 # Run against the latest stable release
 group :test, :development do
+  gem 'rails-controller-testing'
   gem 'rspec-rails', '~> 4.0.0'
 end
