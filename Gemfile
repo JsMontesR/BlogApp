@@ -27,6 +27,7 @@ gem 'jbuilder', '~> 2.7'
 
 # Reduces boot times through caching; required in config/boot.rb
 gem 'bootsnap', '>= 1.4.4', require: false
+gem 'rexml'
 
 group :development, :test do
   # Call 'byebug' anywhere in the code to stop execution and get a debugger console
@@ -55,3 +56,9 @@ gem 'tzinfo-data', platforms: [:mingw, :mswin, :x64_mingw, :jruby]
 # Bcript gem for encription
 
 gem 'bcrypt', '~> 3.1', '>= 3.1.11'
+
+
+# Run against the latest stable release
+group :test, :development do
+  gem 'rspec-rails', '~> 4.0.0'
+end
