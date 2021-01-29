@@ -1,6 +1,4 @@
 <p>
   <%= form.label "Visibility:" %><br>
-  <%= form.select :status,
-                  [['Public', 'public'], ['Personal', 'personal'], ['Archived', 'archived']],
-                  selected: @comment.nil? ? 'public' : @comment.status %>
+  <%= form.select :status, valid_statuses %>
 </p>

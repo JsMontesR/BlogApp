@@ -4,10 +4,12 @@ module VisibleFeature
   PERSONAL = 'personal'.freeze
   ARCHIVED = 'archived'.freeze
 
-  VALID_STATUSES = [PUBLIC, PERSONAL, ARCHIVED].freeze
+  # Valid statuses have capitalized symbol-keys to facilitate the capitalized
+  # rendering of the statuses names within the views.
+  VALID_STATUSES = { Public: PUBLIC, Personal: PERSONAL, Archived: ARCHIVED }.freeze
 
   included do
-    validates :status, inclusion: { in: VALID_STATUSES }
+    validates :status, inclusion: { in: VALID_STATUSES.values }
   end
 
   class_methods do

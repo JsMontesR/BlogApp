@@ -1,7 +1,7 @@
 <!--Articles main list with filters-->
 <ul>
   <% case filter %>
-  <% when :public %>
+  <% when VisibleFeature::PUBLIC %>
     <% articles.each do |article| %>
       <% if article.public? %>
         <li>
@@ -9,7 +9,7 @@
         </li>
       <% end %>
     <% end %>
-  <% when :archived %>
+  <% when VisibleFeature::ARCHIVED %>
     <% articles.each do |article| %>
       <% if article.archived? %>
         <li>
@@ -17,7 +17,7 @@
         </li>
       <% end %>
     <% end %>
-  <% when :personal %>
+  <% when VisibleFeature::PERSONAL %>
     <% articles.each do |article| %>
       <% if article.personal? %>
         <li>

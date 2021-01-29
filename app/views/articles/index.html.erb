@@ -3,10 +3,10 @@
 <h2>Our blog has <%= count_unarchived_articles %> active articles and counting!</h2>
 <%= link_to "Create a new article!", new_article_path %>
 <h3>Blog current public articles:</h3>
-<%= render 'articles/articles_list', articles: @articles, filter: :public %>
+<%= render 'articles/articles_list', articles: @articles, filter: VisibleFeature::PUBLIC %>
 
 <h3>Blog archived articles:</h3>
-<%= render 'articles/articles_list', articles: @articles, filter: :archived %>
+<%= render 'articles/articles_list', articles: @articles, filter: VisibleFeature::ARCHIVED %>
 
 
 

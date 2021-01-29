@@ -1,19 +1,19 @@
 <!--Comments main list with filters-->
 <ul>
   <% case filter %>
-  <% when :public %>
+  <% when VisibleFeature::PUBLIC %>
     <% comments.each do |comment| %>
       <% if comment.public? %>
         <%= render comment %>
       <% end %>
     <% end %>
-  <% when :archived %>
+  <% when VisibleFeature::ARCHIVED %>
     <% comments.each do |comment| %>
       <% if comment.archived? %>
         <%= render comment %>
       <% end %>
     <% end %>
-  <% when :personal %>
+  <% when VisibleFeature::PERSONAL %>
     <% comments.each do |comment| %>
       <% if comment.personal? && (comment.user == current_user || current_user.follows?(comment.user)) %>
         <%= render comment %>

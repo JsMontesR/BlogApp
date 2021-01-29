@@ -23,11 +23,11 @@
 </ul>
 
 <h2>Comments</h2>
-<%= render 'comments/comments_list', comments: @article.comments, filter: :public %>
+<%= render 'comments/comments_list', comments: @article.comments, filter: VisibleFeature::PUBLIC %>
 <h2>Personal comments (only yours and from followed authors)</h2>
-<%= render 'comments/comments_list', comments: @article.comments, filter: :personal %>
+<%= render 'comments/comments_list', comments: @article.comments, filter: VisibleFeature::PERSONAL %>
 <h2>Archived comments</h2>
-<%= render 'comments/comments_list', comments: @article.comments, filter: :archived %>
+<%= render 'comments/comments_list', comments: @article.comments, filter: VisibleFeature::ARCHIVED %>
 
 <h2>Add a comment:</h2>
 <%= form_with model: [@article, @article.comments.build] do |form| %>

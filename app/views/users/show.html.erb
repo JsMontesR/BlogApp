@@ -13,15 +13,15 @@
 
 
 <h3><%= @user.username  %> current articles:</h3>
-<%= render 'articles/articles_list', articles: @user.articles, filter: :public %>
+<%= render 'articles/articles_list', articles: @user.articles, filter: VisibleFeature::PUBLIC %>
 
 <% if current_user.follows?(@user) || @user == current_user %>
   <h3><%= @user.username %> personal articles:</h3>
-  <%= render 'articles/articles_list', articles: @user.articles, filter: :personal %>
+  <%= render 'articles/articles_list', articles: @user.articles, filter: VisibleFeature::PERSONAL %>
 <% end %>
 
 
 <h3><%= @user.username %> archived articles:</h3>
-<%= render 'articles/articles_list', articles: @user.articles, filter: :archived %>
+<%= render 'articles/articles_list', articles: @user.articles, filter: VisibleFeature::ARCHIVED %>
 
 <h3>Total of articles published: <%= @user.articles.count %> </h3>
