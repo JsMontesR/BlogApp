@@ -6,4 +6,8 @@ class Article < ApplicationRecord
   validates :title, presence: true
   validates :body, presence: true, length: { minimum: 10 }
 
+  # Comparison between articles
+  def equals?(article)
+    article.title == title && article.body == body && article.status == status && article.user == user
+  end
 end

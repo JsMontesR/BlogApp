@@ -8,7 +8,9 @@ RSpec.describe Article, type: :module do
   let(:article) { Article.new(title: title, body: body, status: status, user: user) }
   it 'status can be verified' do
     expect { article.archived? }.not_to raise_error
+    expect { article.public? }.not_to raise_error
+    expect { article.personal? }.not_to raise_error
     # This test could be better if create a Dummy model who includes the Visible concern instead of using a real model,
-    # violating the principle of isolation for unit test
+    # violating the principle of isolation for unit tests
   end
 end

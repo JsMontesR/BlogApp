@@ -62,4 +62,5 @@ gem 'bcrypt', '~> 3.1', '>= 3.1.11'
 group :test, :development do
   gem 'rails-controller-testing'
   gem 'rspec-rails', '~> 4.0.0'
+  gem 'factory_bot_rails'
 end
